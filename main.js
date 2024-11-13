@@ -1,4 +1,4 @@
-// Main JavaScript for handling silence skipping, speed control, volume control, fullscreen control, rewind/forward control, auto-rotate, and playlist control
+// Main JavaScript for handling silence skipping, speed control, volume control, fullscreen control, rewind/forward control, auto-rotate, playlist control, and auto-repeat
 document.addEventListener("DOMContentLoaded", function() {
     const video = document.getElementById("videoPlayer");
     const toggleButton = document.getElementById("toggleSilenceSkip");
@@ -92,12 +92,18 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+    // Auto-repeat functionality
     video.addEventListener("ended", function() {
         const currentIndex = Array.from(videoItems).findIndex(item => item.getAttribute("data-video-src") === video.src);
         const nextIndex = (currentIndex + 1) % videoItems.length;
+
+        if (nextIndex === 0) {
+            console.log("Restarting playlist from the beginning.");
+        }
+
         video.src = videoItems[nextIndex].getAttribute("data-video-src");
         video.play();
-        console.log("Playing next:", videoItems[nextIndex].textContent);
+        console.log("Playing:", videoItems[nextIndex].textContent);
     });
 
     // Check for silence in video playback
