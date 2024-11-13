@@ -1,4 +1,4 @@
-// Main JavaScript for handling silence skipping, speed control, volume control, and fullscreen control
+// Main JavaScript for handling silence skipping, speed control, volume control, fullscreen control, and rewind/forward control
 document.addEventListener("DOMContentLoaded", function() {
     const video = document.getElementById("videoPlayer");
     const toggleButton = document.getElementById("toggleSilenceSkip");
@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const speedDownButton = document.getElementById("speedDown");
     const volumeControl = document.getElementById("volumeControl");
     const fullscreenButton = document.getElementById("fullscreenButton");
+    const rewindButton = document.getElementById("rewindButton");
+    const forwardButton = document.getElementById("forwardButton");
     
     let isSilenceSkippingEnabled = false;
 
@@ -46,11 +48,22 @@ document.addEventListener("DOMContentLoaded", function() {
         if (video.requestFullscreen) {
             video.requestFullscreen();
         } else if (video.webkitRequestFullscreen) {
-            video.webkitRequestFullscreen(); // For Safari compatibility
+            video.webkitRequestFullscreen();
         } else if (video.msRequestFullscreen) {
-            video.msRequestFullscreen(); // For Microsoft Edge
+            video.msRequestFullscreen();
         }
         console.log("Fullscreen mode activated");
+    });
+
+    // Rewind and forward controls
+    rewindButton.addEventListener("click", function() {
+        video.currentTime = Math.max(0, video.currentTime - 10);
+        console.log("Rewinded 10 seconds. Current time:", video.currentTime);
+    });
+
+    forwardButton.addEventListener("click", function() {
+        video.currentTime = Math.min(video.duration, video.currentTime + 10);
+        console.log("Forwarded 10 seconds. Current time:", video.currentTime);
     });
 
     // Check for silence in video playback
