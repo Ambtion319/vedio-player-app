@@ -1,4 +1,4 @@
-// Main JavaScript for handling silence skipping, speed control, volume control, fullscreen control, and rewind/forward control
+// Main JavaScript for handling silence skipping, speed control, volume control, fullscreen control, rewind/forward control, and auto-rotate
 document.addEventListener("DOMContentLoaded", function() {
     const video = document.getElementById("videoPlayer");
     const toggleButton = document.getElementById("toggleSilenceSkip");
@@ -65,6 +65,21 @@ document.addEventListener("DOMContentLoaded", function() {
         video.currentTime = Math.min(video.duration, video.currentTime + 10);
         console.log("Forwarded 10 seconds. Current time:", video.currentTime);
     });
+
+    // Auto-rotate for portrait videos
+    function rotateVideoIfNeeded() {
+        if (video.videoWidth < video.videoHeight) {
+            video.style.transform = "rotate(90deg)";
+            video.style.width = "100vh";
+            video.style.height = "100vw";
+            console.log("Video rotated to landscape mode for optimal view.");
+        } else {
+            video.style.transform = "none";
+            console.log("Video is already in landscape mode.");
+        }
+    }
+
+    video.addEventListener("loadedmetadata", rotateVideoIfNeeded);
 
     // Check for silence in video playback
     video.addEventListener("play", function() {
