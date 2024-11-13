@@ -1,4 +1,4 @@
-// Main JavaScript for handling silence skipping, speed control, volume control, fullscreen control, rewind/forward control, and auto-rotate
+// Main JavaScript for handling silence skipping, speed control, volume control, fullscreen control, rewind/forward control, auto-rotate, and playlist control
 document.addEventListener("DOMContentLoaded", function() {
     const video = document.getElementById("videoPlayer");
     const toggleButton = document.getElementById("toggleSilenceSkip");
@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const fullscreenButton = document.getElementById("fullscreenButton");
     const rewindButton = document.getElementById("rewindButton");
     const forwardButton = document.getElementById("forwardButton");
+    const videoList = document.getElementById("videoList");
+    const videoItems = videoList.getElementsByTagName("li");
     
     let isSilenceSkippingEnabled = false;
 
@@ -80,6 +82,23 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     video.addEventListener("loadedmetadata", rotateVideoIfNeeded);
+
+    // Playlist functionality
+    Array.from(videoItems).forEach(item => {
+        item.addEventListener("click", function() {
+            video.src = item.getAttribute("data-video-src");
+            video.play();
+            console.log("Playing:", item.textContent);
+        });
+    });
+
+    video.addEventListener("ended", function() {
+        const currentIndex = Array.from(videoItems).findIndex(item => item.getAttribute("data-video-src") === video.src);
+        const nextIndex = (currentIndex + 1) % videoItems.length;
+        video.src = videoItems[nextIndex].getAttribute("data-video-src");
+        video.play();
+        console.log("Playing next:", videoItems[nextIndex].textContent);
+    });
 
     // Check for silence in video playback
     video.addEventListener("play", function() {
