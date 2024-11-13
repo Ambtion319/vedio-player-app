@@ -1,4 +1,4 @@
-// Main JavaScript for handling silence skipping, speed control, volume control, fullscreen control, rewind/forward control, auto-rotate, playlist control, auto-repeat, and skip invalid videos
+// Main JavaScript for handling silence skipping, speed control, volume control, fullscreen control, rewind/forward control, auto-rotate, playlist control, auto-repeat, skip invalid videos, and timed transitions
 document.addEventListener("DOMContentLoaded", function() {
     const video = document.getElementById("videoPlayer");
     const toggleButton = document.getElementById("toggleSilenceSkip");
@@ -10,8 +10,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const forwardButton = document.getElementById("forwardButton");
     const videoList = document.getElementById("videoList");
     const videoItems = videoList.getElementsByTagName("li");
+    const transitionTimeInput = document.getElementById("transitionTime");
     
     let isSilenceSkippingEnabled = false;
+    let transitionTimeout;
 
     // Placeholder for silence detection function
     function skipSilence() {
@@ -83,16 +85,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     video.addEventListener("loadedmetadata", rotateVideoIfNeeded);
 
-    // Playlist functionality with invalid video skip
+    // Playlist functionality
     Array.from(videoItems).forEach(item => {
         item.addEventListener("click", function() {
             video.src = item.getAttribute("data-video-src");
             video.play();
+            startTransitionTimer();
             console.log("Playing:", item.textContent);
         });
     });
 
-    // Auto-repeat functionality and skip invalid videos
+    // Auto-repeat and skip invalid videos
     video.addEventListener("error", function() {
         console.log("Error loading video:", video.src);
         playNextVideo();
@@ -110,12 +113,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
         video.src = videoItems[nextIndex].getAttribute("data-video-src");
         video.play();
+        startTransitionTimer();
         console.log("Playing:", videoItems[nextIndex].textContent);
+    }
+
+    // Timed transitions between videos
+    function startTransitionTimer() {
+        clearTimeout(transitionTimeout);
+        const transitionTime = parseInt(transitionTimeInput.value, 10) * 1000; // Convert seconds to milliseconds
+        transitionTimeout = setTimeout(playNextVideo, transitionTime);
+        console.log("Transition timer set for", transitionTime / 1000, "seconds");
     }
 
     // Check for silence in video playback
     video.addEventListener("play", function() {
         console.log("Video started");
         setInterval(skipSilence, 5000);
+        startTransitionTimer();
     });
 });

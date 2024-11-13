@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Player with Multiple Controls, Playlist, Auto-Repeat, and Invalid Video Skip</title>
+    <title>Video Player with Multiple Controls, Playlist, Auto-Repeat, Invalid Video Skip, and Timed Transitions</title>
     <style>
         #videoPlayer {
             width: 100%;
@@ -32,6 +32,8 @@
         <button id="fullscreenButton">Fullscreen</button>
         <button id="rewindButton">Rewind 10s</button>
         <button id="forwardButton">Forward 10s</button>
+        <label for="transitionTime">Transition time (seconds):</label>
+        <input type="number" id="transitionTime" value="10" min="1">
     </div>
     <div class="playlist">
         <h3>Playlist</h3>
