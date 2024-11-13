@@ -1,9 +1,10 @@
-// Main JavaScript for handling silence skipping and speed control
+// Main JavaScript for handling silence skipping, speed control, and volume control
 document.addEventListener("DOMContentLoaded", function() {
     const video = document.getElementById("videoPlayer");
     const toggleButton = document.getElementById("toggleSilenceSkip");
     const speedUpButton = document.getElementById("speedUp");
     const speedDownButton = document.getElementById("speedDown");
+    const volumeControl = document.getElementById("volumeControl");
     
     let isSilenceSkippingEnabled = false;
 
@@ -31,6 +32,12 @@ document.addEventListener("DOMContentLoaded", function() {
     speedDownButton.addEventListener("click", function() {
         video.playbackRate = Math.max(0.25, video.playbackRate - 0.25); // Decrease speed, minimum 0.25
         console.log("Speed decreased to", video.playbackRate);
+    });
+
+    // Control volume
+    volumeControl.addEventListener("input", function() {
+        video.volume = volumeControl.value;
+        console.log("Volume set to", video.volume);
     });
 
     // Listen for video play event and periodically check for silence
