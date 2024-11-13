@@ -1,6 +1,6 @@
-# Video Player App with Silence Skipping, Speed, Volume, Fullscreen, Rewind/Forward, Auto-Rotate, Playlist, and Auto-Repeat Control
+# Video Player App with Silence Skipping, Speed, Volume, Fullscreen, Rewind/Forward, Auto-Rotate, Playlist, Auto-Repeat, and Invalid Video Skip
 
-This video player app includes features for silence-skipping, playback speed control, volume control, fullscreen mode, rewind/forward control, auto-rotation for portrait videos, playlist management, and auto-repeat for playlists.
+This video player app includes features for silence-skipping, playback speed control, volume control, fullscreen mode, rewind/forward control, auto-rotation for portrait videos, playlist management, auto-repeat for playlists, and skipping of invalid videos.
 
 ## Features
 - Play video files
@@ -12,6 +12,7 @@ This video player app includes features for silence-skipping, playback speed con
 - Auto-rotate portrait videos to landscape mode
 - Playlist to play multiple videos sequentially
 - Auto-repeat playlist from the beginning
+- Skip invalid videos
 
 ## Getting Started
 This project provides a setup for a video player with all the listed features.
