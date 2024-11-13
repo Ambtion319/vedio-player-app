@@ -4,13 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Player with Silence Skipping</title>
+    <style>
+        /* تحسين واجهة المستخدم */
+        #videoPlayer {
+            width: 100%;
+            max-width: 600px;
+        }
+        .controls {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <h1>Video Player App</h1>
-    <video id="videoPlayer" controls width="600">
+    <video id="videoPlayer" controls>
         <source src="path-to-your-video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+    <div class="controls">
+        <button id="toggleSilenceSkip">Toggle Silence Skipping</button>
+    </div>
     <script src="src/main.js"></script>
 </body>
 </html>
