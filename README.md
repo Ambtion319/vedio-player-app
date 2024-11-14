@@ -1,19 +1,22 @@
-# Video Player App with Silence Skipping, Speed, Volume, Fullscreen, Rewind/Forward, Auto-Rotate, Playlist, Auto-Repeat, Invalid Video Skip, and Timed Transitions
-
-This video player app includes features for silence-skipping, playback speed control, volume control, fullscreen mode, rewind/forward control, auto-rotation for portrait videos, playlist management, auto-repeat, skipping invalid videos, and timed transitions.
+# Final Version of Video Player App
 
 ## Features
-- Play video files
-- Toggle silence skipping
-- Control playback speed
-- Control volume level
-- Toggle fullscreen mode
-- Rewind 10 seconds and forward 10 seconds
-- Auto-rotate portrait videos to landscape mode
-- Playlist to play multiple videos sequentially
-- Auto-repeat playlist from the beginning
-- Skip invalid videos
-- Timed transitions between videos
+- Silence-skipping toggle
+- Playback speed control
+- Volume control
+- Fullscreen mode
+- Rewind and forward controls
+- Auto-rotate for portrait videos
+- Playlist and auto-repeat functionality
+- Skipping of invalid videos
+- Timed transitions
+- Settings save/load capability
+- Subtitle loading and display feature
 
 ## Getting Started
-This project provides a setup for a video player with all the listed features.
+This project is ready for testing on a local development server.
+
+1. Open `index.html` in a browser.
+2. Use the controls to interact with the video player.
+
+Note: Ensure all necessary video files and subtitle files are available in the correct folders.
